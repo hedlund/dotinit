@@ -33,7 +33,7 @@ scoop bucket add nerd-fonts
 # Install most tools using Scoop
 scoop install autohotkey
 scoop install cmder
-scoop install docker
+scoop install etcher
 scoop install firefox-developer
 scoop install godot
 scoop install gpg4win
@@ -41,18 +41,16 @@ scoop install hyper
 scoop install mobaxterm
 scoop install now-cli
 scoop install postman
+scoop install putty
 scoop install slack
 scoop install sudo ln touch time
 scoop install vscode
 scoop install wox
 scoop install zeal
 
-# Add Visual Studio Code to context menu
-reg import "$SCOOP_DIR\apps\vscode\current\vscode-install-context.reg"
-
-# Make sure Git recognises OpenSSH
-[environment]::SetEnvironmentVariable('GIT_SSH', (Resolve-Path (scoop which ssh)), 'USER')
-
+# Make sure SSH works with Git
+[environment]::SetEnvironmentVariable('GIT_SSH', (Resolve-Path (scoop which plink)), 'USER')
+#[environment]::SetEnvironmentVariable('GIT_SSH', (Resolve-Path (scoop which ssh)), 'USER')
 
 ###############################################################################
 # Choco
@@ -66,9 +64,10 @@ choco install -y 1password
 choco install -y boostnote
 choco install -y caffeine
 choco install -y dropbox
+choco install -y docker-for-windows
 choco install -y googlechrome
 choco install -y spotify
-
+choco install -y vscode
 
 ###############################################################################
 # Weasel-Pageant
@@ -92,3 +91,7 @@ if (![System.IO.File]::Exists("$TOOLS_DIR\weasel-pageant\weasel-pageant")) {
     # Cleanup
     Remove-Item -Path "$weasel_file"
 }
+
+# Configure GPG
+gpg --import "$ScriptDirectory\..\common\pubkey.txt"
+Add-Content $HOME\AppData\Roaming\gnupg\gpg-agent.conf "enable-putty-support"
