@@ -68,6 +68,8 @@ choco install -y docker-for-windows
 choco install -y googlechrome
 choco install -y spotify
 choco install -y vscode
+choco install -y wsl
+choco install -y wsl-ubuntu-1804
 
 ###############################################################################
 # Weasel-Pageant
@@ -92,6 +94,21 @@ if (![System.IO.File]::Exists("$TOOLS_DIR\weasel-pageant\weasel-pageant")) {
     Remove-Item -Path "$weasel_file"
 }
 
+###############################################################################
+# Application configuration
+
 # Configure GPG
+$GPG_CONFIG_FILE = "$HOME\AppData\Roaming\gnupg\gpg-agent.conf"
 gpg --import "$ScriptDirectory\..\common\pubkey.txt"
-Add-Content $HOME\AppData\Roaming\gnupg\gpg-agent.conf "enable-putty-support"
+if ((Get-Content $GPG_CONFIG_FILE | %{$_ -match "enable-putty-support"}) -contains $false) {
+    Add-Content $GPG_CONFIG_FILE "enable-putty-support"
+}
+
+# Configure Docker to not automatically start, not track, and expose TCP (which is insecure,
+# but unfortunately needed to use with LXSS).
+$DOCKER_CONFIG_FILE = "$HOME\AppData\Roaming\Docker\settings.json"
+(Get-Content $DOCKER_CONFIG_FILE) `
+    -replace '"StartAtLogin":.+$', '"StartAtLogin": false,' `
+    -replace '"IsTracking":.+$', '"IsTracking": false,' `
+    -replace '"ExposeTcp":.+$', '"ExposeTcp": true,' |
+  Out-File $DOCKER_CONFIG_FILE
