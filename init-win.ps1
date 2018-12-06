@@ -16,4 +16,11 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-L
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All  -NoRestart
 Enable-WindowsOptionalFeature -Online -FeatureName containers -All -NoRestart
 
+# Rename the PC
+$name = Read-Host -Prompt "Enter new name to rename the computer (ENTER to skip)"
+if ($name.Trim()) {
+    $computer = Get-WmiObject Win32_ComputerSystem
+    $computer.Rename($name.Trim())
+}
+
 Write-Output "`nYour Windows PC has been initiated.`nPlease restart it to apply all changes!`n"

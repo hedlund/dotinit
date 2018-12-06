@@ -14,6 +14,8 @@ Get-AppxPackage king.com.* | Remove-AppxPackage
 Get-AppxPackage Microsoft.MicrosoftSolitaireCollection* | Remove-AppxPackage
 Get-AppxPackage Microsoft.MicrosoftOfficeHub* | Remove-AppxPackage
 Get-AppxPackage 828B5831.HiddenCity* | Remove-AppxPackage
+Get-AppxPackage 7EE7776C.LinkedInforWindows | Remove-AppxPackage
+Get-AppxPackage Fitbit.* | Remove-AppxPackage
 
 # Prevent "Suggested Applications" from returning
 Set-RegistryDWord -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Cloud Content" -Name "DisableWindowsConsumerFeatures" -Value 1
@@ -48,3 +50,8 @@ Remove-PSDrive "HKCR"
 # Restart Explorer and give it time to start
 start "explorer.exe"
 sleep 15
+
+
+
+Candy Crush Friends Saga
+Fitbit Coach

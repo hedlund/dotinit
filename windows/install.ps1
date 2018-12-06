@@ -6,7 +6,7 @@ $ScriptDirectory = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
 # In order to install Scoop and Choco, we must set the execution policy to 
 # allow to run remote scripts
 if ((Get-ExecutionPolicy) -eq "Restricted") {
-    Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+    Set-ExecutionPolicy RemoteSigned -scope CurrentUser -force
 }
 
 ###############################################################################
@@ -28,6 +28,7 @@ scoop install openssh git
 
 # ...then add the buckets
 scoop bucket add extras
+scoop bucket add games
 scoop bucket add nerd-fonts
 
 # Install most tools using Scoop
@@ -37,18 +38,17 @@ scoop install etcher
 scoop install firefox-developer
 scoop install godot
 scoop install gpg4win
-scoop install hyper
-scoop install mobaxterm
-scoop install now-cli
+#scoop install mobaxterm
+#scoop install now-cli
 scoop install postman
 scoop install putty
 scoop install slack
 scoop install sudo ln touch time
-scoop install vscode
-scoop install wox
-scoop install zeal
+#scoop install wox
+#scoop install zeal
 
 # Make sure SSH works with Git
+# Using plink (putty) enables Yubikey to work
 [environment]::SetEnvironmentVariable('GIT_SSH', (Resolve-Path (scoop which plink)), 'USER')
 #[environment]::SetEnvironmentVariable('GIT_SSH', (Resolve-Path (scoop which ssh)), 'USER')
 
@@ -66,10 +66,18 @@ choco install -y caffeine
 choco install -y dropbox
 choco install -y docker-for-windows
 choco install -y googlechrome
+choco install -y hyper
 choco install -y spotify
+choco install -y vivaldi
 choco install -y vscode
-choco install -y wsl
-choco install -y wsl-ubuntu-1804
+
+# Install fonts
+choco install -y firacode
+
+# Installing Ubuntu via choco can't be done until after restart of computer
+# (as LXSS must be enabled first), and also it installs the subsystem as root 
+# and requires elevated privileges, so skip this for now...
+#choco install -y wsl wsl-ubuntu-1804
 
 ###############################################################################
 # Weasel-Pageant
@@ -100,15 +108,20 @@ if (![System.IO.File]::Exists("$TOOLS_DIR\weasel-pageant\weasel-pageant")) {
 # Configure GPG
 $GPG_CONFIG_FILE = "$HOME\AppData\Roaming\gnupg\gpg-agent.conf"
 gpg --import "$ScriptDirectory\..\common\pubkey.txt"
-if ((Get-Content $GPG_CONFIG_FILE | %{$_ -match "enable-putty-support"}) -contains $false) {
+if (![System.IO.File]::Exists($GPG_CONFIG_FILE) -Or (Get-Content $GPG_CONFIG_FILE | %{$_ -match "enable-putty-support"}) -contains $false) {
     Add-Content $GPG_CONFIG_FILE "enable-putty-support"
 }
 
-# Configure Docker to not automatically start, not track, and expose TCP (which is insecure,
-# but unfortunately needed to use with LXSS).
+# Configure Docker to not automatically start, not track, and expose TCP
+# (which is insecure, but unfortunately needed to use with LXSS).
 $DOCKER_CONFIG_FILE = "$HOME\AppData\Roaming\Docker\settings.json"
-(Get-Content $DOCKER_CONFIG_FILE) `
-    -replace '"StartAtLogin":.+$', '"StartAtLogin": false,' `
-    -replace '"IsTracking":.+$', '"IsTracking": false,' `
-    -replace '"ExposeTcp":.+$', '"ExposeTcp": true,' |
-  Out-File $DOCKER_CONFIG_FILE
+if (![System.IO.File]::Exists($DOCKER_CONFIG_FILE) -Or (Get-Content $DOCKER_CONFIG_FILE) -eq $null) {
+    @{StartAtLogin=$false;IsTracking=$false;ExposeTcp=$true} | ConvertTo-Json | Out-File $DOCKER_CONFIG_FILE
+}
+else {
+    (Get-Content $DOCKER_CONFIG_FILE) `
+        -replace '"StartAtLogin":.+$', '"StartAtLogin": false,' `
+        -replace '"IsTracking":.+$', '"IsTracking": false,' `
+        -replace '"ExposeTcp":.+$', '"ExposeTcp": true,' |
+      Out-File $DOCKER_CONFIG_FILE
+}

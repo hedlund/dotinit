@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Make sure we are up to date
+sudo apt update && sudo apt upgrade -y
+
 # Just make sure some basics are there
 sudo apt install -y curl wget nano rsync telnet
 sudo apt install -y apt-transport-https
