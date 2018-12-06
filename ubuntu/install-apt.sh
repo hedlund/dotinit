@@ -13,6 +13,7 @@ sudo apt install -y gpg scdaemon
 sudo apt install -y direnv
 sudo apt install -y httpie
 sudo apt install -y tree
+sudo apt install -y xsel
 
 #ack, blackbox, dep?
 #envchain, fzf, gopass?
@@ -21,4 +22,3 @@ sudo apt install -y tree
 
 # Cleanup
 sudo apt autoremove -y
-
