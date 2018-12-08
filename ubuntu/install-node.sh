@@ -19,7 +19,3 @@ if ! exists yarn; then
   sudo apt update
   sudo apt install -y yarn
 fi
-
-# Configure Node to install global packages without needing sudo
-mkdir ${HOME}/.npm-packages
-npm config set prefix ${HOME}/.npm-packages

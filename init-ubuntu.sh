@@ -14,5 +14,8 @@ ${SCRIPT_DIR}/ubuntu/install-golang.sh
 # Install Node.js
 ${SCRIPT_DIR}/ubuntu/install-node.sh
 
+# Make sure we have some common folders
+${SCRIPT_DIR}/common/create-folders.sh
+
 # Run setup
 ${SCRIPT_DIR}/ubuntu/setup-ubuntu.sh

@@ -128,3 +128,10 @@ else {
 
 # Make sure that Git isn't messing with the line endings
 git config --global core.autocrlf false
+
+
+###############################################################################
+# Common folders
+
+New-Item -ItemType Directory -Force -Path "$HOME\Projects" | Out-Null
+New-Item -ItemType Directory -Force -Path "$HOME\Temp" | Out-Null

@@ -3,6 +3,10 @@
 if [ -z "$(which go)" ]; then
   echo "Golang not available. Skipping!"
 else
+  # Set the GOPATH and make sure the folder exists
+  export GOPATH="$HOME/Projects/golang"
+  [ ! -d "$GOPATH/src" ] && mkdir -p "$GOPATH/src"
+
   go get -u github.com/kardianos/govendor
 #   go get -u github.com/ramya-rao-a/go-outline
 #   go get -u github.com/nsf/gocode
