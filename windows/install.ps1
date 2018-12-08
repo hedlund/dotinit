@@ -125,3 +125,6 @@ else {
         -replace '"ExposeTcp":.+$', '"ExposeTcp": true,' |
       Out-File $DOCKER_CONFIG_FILE
 }
+
+# Make sure that Git isn't messing with the line endings
+git config --global core.autocrlf false
