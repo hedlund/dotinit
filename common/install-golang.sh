@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 if [ -z "$(which go)" ]; then
   echo "Golang not available. Skipping!"

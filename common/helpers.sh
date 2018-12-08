@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # Check if a command exists
 function exists() {

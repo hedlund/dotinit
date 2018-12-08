@@ -1,5 +1,4 @@
-#!/bin/bash
-set -e
+#!/bin/bash -e
 
 SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
@@ -17,4 +16,3 @@ ${SCRIPT_DIR}/ubuntu/install-node.sh
 
 # Run setup
 ${SCRIPT_DIR}/ubuntu/setup-ubuntu.sh
-

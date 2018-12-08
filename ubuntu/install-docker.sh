@@ -1,5 +1,4 @@
-#!/bin/bash
-set -e
+#!/bin/bash -e
 
 # Configure versions
 DOCKER_CHANNEL=stable

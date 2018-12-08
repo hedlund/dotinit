@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # Make sure we are up to date
 sudo apt update && sudo apt upgrade -y

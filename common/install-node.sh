@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 if [ -z "$(which npm)" ]; then
   echo "NPM not available. Skipping!"
