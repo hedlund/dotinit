@@ -14,7 +14,6 @@ if ((Get-ExecutionPolicy) -eq "Restricted") {
 
 $TOOLS_DIR = "C:\tools"
 $WEASEL_PAGEANT_VERSION = "1.1"
-$SCOOP_DIR = "$HOME\scoop"
 
 ###############################################################################
 # Scoop
@@ -38,14 +37,14 @@ scoop install etcher
 scoop install firefox-developer
 scoop install godot
 scoop install gpg4win
+scoop install hain
 #scoop install mobaxterm
 #scoop install now-cli
 scoop install postman
 scoop install putty
 scoop install slack
 scoop install sudo ln touch time
-#scoop install wox
-#scoop install zeal
+scoop install zeal
 
 # Make sure SSH works with Git
 # Using plink (putty) enables Yubikey to work
@@ -67,6 +66,8 @@ choco install -y dropbox
 choco install -y docker-for-windows
 choco install -y googlechrome
 choco install -y hyper
+choco install -y lightshot
+choco install -y quicklook
 choco install -y spotify
 choco install -y vivaldi
 choco install -y vscode
