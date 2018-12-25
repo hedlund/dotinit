@@ -50,8 +50,3 @@ Remove-PSDrive "HKCR"
 # Restart Explorer and give it time to start
 start "explorer.exe"
 sleep 15
-
-
-
-Candy Crush Friends Saga
-Fitbit Coach

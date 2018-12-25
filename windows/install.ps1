@@ -44,7 +44,6 @@ scoop install postman
 scoop install putty
 scoop install slack
 scoop install sudo ln touch time
-scoop install zeal
 
 # Make sure SSH works with Git
 # Using plink (putty) enables Yubikey to work
@@ -69,8 +68,9 @@ choco install -y hyper
 choco install -y lightshot
 choco install -y quicklook
 choco install -y spotify
-choco install -y vivaldi
+#choco install -y vivaldi
 choco install -y vscode
+choco install -y zeal
 
 # Install fonts
 choco install -y firacode

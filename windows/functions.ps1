@@ -73,3 +73,11 @@ Function Set-RegistryString([String]$Path, [String]$Name, [string]$Value){
 Function Set-DeviceAccess([string]$Guid, [string]$Value){
     Set-RegistryString -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{$Guid}" -Name Value -Value $Value
 }
+
+Function Set-ShortCut([String]$Source, [String]$Arguments, [String]$Destination) {
+    $WshShell = New-Object -comObject WScript.Shell
+    $Shortcut = $WshShell.CreateShortcut($Destination)
+    $Shortcut.TargetPath = $Source
+    $Shortcut.Arguments = $Arguments
+    $Shortcut.Save()
+}

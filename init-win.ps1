@@ -11,6 +11,12 @@ $DotInitDirectory = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
 # Include configure.ps1 to configure the registry
 . ("$DotInitDirectory\windows\configure.ps1")
 
+# Include configure-apps.ps1 to configure a couple of the installed apps
+. ("$DotInitDirectory\windows\configure-apps.ps1")
+
+# Include configure-autostart.ps1 to fix autostart items
+. ("$DotInitDirectory\windows\configure-autostart.ps1")
+
 # Include cleanup.ps1 to cleanup some things
 . ("$DotInitDirectory\windows\cleanup.ps1")
 
