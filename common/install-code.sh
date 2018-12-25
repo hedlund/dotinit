@@ -8,7 +8,7 @@ else
   # code --install-extension christian-kohler.npm-intellisense
   # code --install-extension christian-kohler.path-intellisense
   # code --install-extension dbaeumer.vscode-eslint
-  # code --install-extension deerawan.vscode-dash
+  code --install-extension deerawan.vscode-dash
   # code --install-extension eamodio.gitlens
   # code --install-extension EditorConfig.EditorConfig
   # code --install-extension esbenp.prettier-vscode
