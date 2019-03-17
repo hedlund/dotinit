@@ -16,6 +16,7 @@ Get-AppxPackage Microsoft.MicrosoftOfficeHub* | Remove-AppxPackage
 Get-AppxPackage 828B5831.HiddenCity* | Remove-AppxPackage
 Get-AppxPackage 7EE7776C.LinkedInforWindows | Remove-AppxPackage
 Get-AppxPackage Fitbit.* | Remove-AppxPackage
+Get-AppxPackage Microsoft.People | Remove-AppxPackage
 
 # Prevent "Suggested Applications" from returning
 Set-RegistryDWord -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Cloud Content" -Name "DisableWindowsConsumerFeatures" -Value 1

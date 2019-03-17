@@ -65,9 +65,11 @@ choco install -y dropbox
 choco install -y docker-for-windows
 choco install -y googlechrome
 choco install -y hyper
+choco install -y intel-xtu
 choco install -y lightshot
 choco install -y quicklook
 choco install -y spotify
+#choco install -y tunsafe
 #choco install -y vivaldi
 choco install -y vscode
 choco install -y zeal
