@@ -6,7 +6,7 @@ source "${SCRIPT_DIR}/../common/helpers.sh"
 
 # Usage: installAur <name>
 function installAur() {
-  git clone https://aur.archlinux.org/$2.git
+  git clone https://aur.archlinux.org/$1.git
   (cd $1 && makepkg -si --noconfirm)
   rm -rf $1
 }
@@ -49,6 +49,11 @@ fi
 # direnv
 if ! exists direnv; then
   installAur direnv
+fi
+
+# Google Cloud SDK
+if ! exists gcloud; then
+  installAur google-cloud-sdk
 fi
 
 # Some things should only be installed on touch devices...

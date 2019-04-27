@@ -29,3 +29,6 @@ ${SCRIPT_DIR}/common/install-code.sh
 
 # Install some global Node packages
 ${SCRIPT_DIR}/common/install-node.sh
+
+# Install some Google Cloud SDK components
+sudo ${SCRIPT_DIR}/common/install-gcloud.sh
