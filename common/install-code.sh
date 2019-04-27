@@ -28,4 +28,5 @@ else
   
   # Themes
   code --install-extension Equinusocio.vsc-material-theme
+  code --install-extension PKief.material-icon-theme
 fi
