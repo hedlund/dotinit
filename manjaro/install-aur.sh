@@ -4,65 +4,70 @@
 SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 source "${SCRIPT_DIR}/../common/helpers.sh"
 
+# Usage: installAur <name>
+function installAur() {
+  git clone https://aur.archlinux.org/$2.git
+  (cd $1 && makepkg -si --noconfirm)
+  rm -rf $1
+}
+
 START_DIR="$PWD"
 cd "$HOME/Downloads/"
 
 # Dropbox
 if ! exists docker; then
   gpg --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
-  git clone https://aur.archlinux.org/dropbox.git
-  (cd dropbox && makepkg -s --noconfirm)
-  sudo pacman -U --noconfirm dropbox/dropbox*.pkg.tar.xz
-  rm -rf dropbox
+  installAur dropbox
 fi
 
 # Wavebox
 if ! exists wavebox; then
-  git clone https://aur.archlinux.org/wavebox-bin.git
-  (cd wavebox-bin && makepkg -s --noconfirm)
-  sudo pacman -U --noconfirm wavebox-bin/wavebox-bin*.pkg.tar.xz
-  rm -rf wavebox-bin
+  installAur wavebox-bin
 fi
 
 # envchain
 if ! exists envchain; then
-  git clone https://aur.archlinux.org/envchain.git
-  (cd envchain && makepkg -s --noconfirm)
-  sudo pacman -U --noconfirm envchain/envchain*.pkg.tar.xz
-  rm -rf envchain
+  installAur envchain
 fi
 
 # MS TTF fonts
 if [ ! -f /usr/share/fonts/TTF/webdings.ttf ]; then
-  git clone https://aur.archlinux.org/ttf-ms-fonts.git
-  (cd ttf-ms-fonts && makepkg -s --noconfirm)
-  sudo pacman -U --noconfirm ttf-ms-fonts/ttf-ms-fonts*.pkg.tar.xz
-  rm -rf ttf-ms-fonts
+  installAur ttf-ms-fonts
 fi
 
 # Postman
 if ! exists postman; then
-  git clone https://aur.archlinux.org/postman.git
-  (cd postman && makepkg -s --noconfirm)
-  sudo pacman -U --noconfirm postman/postman*.pkg.tar.xz
-  rm -rf postman
+  installAur postman
 fi
 
 # Spotify
 if ! exists spotify; then
   gpg --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
-  git clone postmanhttps://aur.archlinux.org/spotify.git
-  (cd spotify && makepkg -s --noconfirm)
-  sudo pacman -U --noconfirm spotify/spotify*.pkg.tar.xz
-  rm -rf spotify
+  installAur spotify
 fi
 
 # direnv
 if ! exists direnv; then
-  git clone https://aur.archlinux.org/direnv.git
-  (cd direnv && makepkg -s --noconfirm)
-  sudo pacman -U --noconfirm direnv/direnv*.pkg.tar.xz
-  rm -rf direnv
+  installAur direnv
+fi
+
+# Some things should only be installed on touch devices...
+if has_flag "--touch"; then
+
+  # Screen rotation - https://wiki.archlinux.org/index.php/Tablet_PC#With_a_KDE_module
+  if ! exists orientation-helper; then
+    installAur iio-sensor-proxy-git
+    installAur kded-rotation-git
+  fi
+
+  # Touchegg
+  if ! exists touchegg; then
+    installAur frame
+    installAur grail 
+    installAur geis
+    installAur touchegg
+  fi
+
 fi
 
 cd "$START_DIR"

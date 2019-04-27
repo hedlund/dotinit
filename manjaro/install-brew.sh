@@ -1,7 +1,11 @@
 #!/bin/bash -e
 
+# Import helpers
+SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+source "${SCRIPT_DIR}/../common/helpers.sh"
+
 # Install Homebrew unless it's already installed
-if [ -z "$(which brew)" ]; then
+if ! exists brew; then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
   export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 fi
