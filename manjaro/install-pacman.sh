@@ -18,7 +18,7 @@ sudo pacman -Syu --noconfirm ruby-irb
 sudo pacman -Syu --noconfirm tig
 sudo pacman -Syu --noconfirm tree
 sudo pacman -Syu --noconfirm yarn
-
+sudo pacman -Syu --noconfirm whois
 
 # Enable Docker
 sudo systemctl start docker
