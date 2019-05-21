@@ -46,6 +46,11 @@ if ! exists spotify; then
   installAur spotify
 fi
 
+# Ghostwriter
+if ! exists ghostwriter; then
+  installAur ghostwriter
+fi
+
 # direnv
 if ! exists direnv; then
   installAur direnv
