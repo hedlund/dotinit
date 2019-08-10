@@ -1,4 +1,8 @@
 #Requires -RunAsAdministrator
+param (
+    [switch]$DryRun = $false
+)
+$Global:DryRun = $DryRun
 
 $ScriptDirectory = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
 . ("$ScriptDirectory\functions.ps1")
@@ -95,12 +99,8 @@ Set-RegistryDWord -Path "HKLM:\SOFTWARE\Microsoft\WcmSvc\wifinetworkmanager\feat
 Set-RegistryDWord -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config" -Name DODownloadMode -Value 0
 
 # Disable Telemetry service
-Stop-Service -Name DiagTrack -Force
-Set-Service -Name DiagTrack -StartupType Disabled
-if ((Get-Service | Where-Object Name -eq dmwappushservice).count -eq 1) {
-    Stop-Service -Name dmwappushservice -Force
-    Set-Service -Name dmwappushservice -StartupType Disabled
-}
+Disable-Service -Name DiagTrack
+Disable-Service -Name dmwappushservice
 Set-RegistryDWord -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection" -Name AllowTelemetry -Value 0
 
 

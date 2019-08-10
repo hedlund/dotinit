@@ -17,6 +17,29 @@ Get-AppxPackage 828B5831.HiddenCity* | Remove-AppxPackage
 Get-AppxPackage 7EE7776C.LinkedInforWindows | Remove-AppxPackage
 Get-AppxPackage Fitbit.* | Remove-AppxPackage
 Get-AppxPackage Microsoft.People | Remove-AppxPackage
+Get-AppxPackage Microsoft.YourPhone | Remove-AppxPackage
+Get-AppxPackage Microsoft.XboxApp | Remove-AppxPackage
+Get-AppxPackage Microsoft.XboxGameOverlay | Remove-AppxPackage
+Get-AppxPackage Microsoft.XboxGamingOverlay | Remove-AppxPackage
+Get-AppxPackage Microsoft.XboxIdentityProvider | Remove-AppxPackage
+Get-AppxPackage Microsoft.Xbox.TCUI | Remove-AppxPackage
+Get-AppxPackage Microsoft.Microsoft3DViewer | Remove-AppxPackage
+Get-AppxPackage Microsoft.ZuneMusic | Remove-AppxPackage
+Get-AppxPackage Microsoft.ZuneVideo | Remove-AppxPackage
+Get-AppxPackage Microsoft.FreshPaint | Remove-AppxPackage
+Get-AppxPackage Microsoft.Print3D | Remove-AppxPackage
+Get-AppxPackage Microsoft.Messaging | Remove-AppxPackage
+Get-AppxPackage Microsoft.MicrosoftStickyNotes | Remove-AppxPackage
+Get-AppxPackage Microsoft.WindowsFeedbackHub | Remove-AppxPackage
+Get-AppxPackage Microsoft.WindowsMaps | Remove-AppxPackage
+Get-AppxPackage Microsoft.BingNews | Remove-AppxPackage
+Get-AppxPackage Microsoft.BingTranslator | Remove-AppxPackage
+Get-AppxPackage Microsoft.GetHelp | Remove-AppxPackage
+Get-AppxPackage Microsoft.Office.Desktop | Remove-AppxPackage
+Get-AppxPackage Microsoft.OneConnect | Remove-AppxPackage
+Get-AppxPackage Microsoft.MSPaint | Remove-AppxPackage
+Get-AppxPackage Microsoft.SkypeApp | Remove-AppxPackage
+Get-AppxPackage Microsoft.Getstarted | Remove-AppxPackage
 
 # Prevent "Suggested Applications" from returning
 Set-RegistryDWord -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Cloud Content" -Name "DisableWindowsConsumerFeatures" -Value 1

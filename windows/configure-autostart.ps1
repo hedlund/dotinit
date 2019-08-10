@@ -1,4 +1,8 @@
 #Requires -RunAsAdministrator
+param (
+    [switch]$DryRun = $false
+)
+$Global:DryRun = $DryRun
 
 $ScriptDirectory = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
 . ("$ScriptDirectory\functions.ps1")
@@ -10,8 +14,10 @@ $ScriptDirectory = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
 Function Remove-AllExcept([String]$Path, [String[]]$Keep) {
   Get-Item -Path $Path | Select-Object -ExpandProperty property | ForEach-Object {
     if (!($Keep -contains $_)) {
-      echo "Removing startup item from registry: $_"
-      Remove-ItemProperty -Path $Path -Name $_
+      Write-Output "Removing startup item: $_"
+      if (!$Global:DryRun) {
+          Remove-ItemProperty -Path $Path -Name $_
+      }
     }
   }
 }
@@ -20,7 +26,10 @@ Function Ensure-StartItems([String]$Path, [Hashtable]$Items) {
   $Items.Keys | Foreach-Object {
     # Only actually set the value if it doesn't already exists...
     if (!(Test-RegistryValue -Path $Path -Name $_)) {
-      New-ItemProperty -Path $Path -Name $_ -PropertyType String -Value $Items.$_ | Out-Null
+      Write-Output "Adding startup item: $_"
+      if (!$Global:DryRun) {
+          New-ItemProperty -Path $Path -Name $_ -PropertyType String -Value $Items.$_ | Out-Null
+      }
     }
   }
 }
@@ -57,10 +66,14 @@ $StartupPath = "$HOME\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Star
 # Remove all unspecified...
 Get-ChildItem "$StartupPath" -Filter *.lnk | Foreach-Object {
   if (!($AllowedStartupItems -contains $_.Name)) {
-    echo "Removing startup item from Start Menu: $($_.Name)"
-    Remove-Item -Path $_.FullName
+    Write-Output "Removing startup item from Start Menu: $($_.Name)"
+    if (!$Global:DryRun) {
+        Remove-Item -Path $_.FullName
+    }
   }
 }
 
 # ...and set the ones we actually want
-Set-ShortCut -Source "$HOME\AppData\Local\Programs\QuickLook\QuickLook.exe" -Arguments "/autorun" -Destination "$StartupPath\QuickLook.lnk"
+if (!$Global:DryRun) {
+    Set-ShortCut -Source "$HOME\AppData\Local\Programs\QuickLook\QuickLook.exe" -Arguments "/autorun" -Destination "$StartupPath\QuickLook.lnk"
+}

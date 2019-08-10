@@ -46,6 +46,11 @@ Function Set-RegistryDWord([String]$Path, [String]$Name, [int32]$Value) {
         return
     }
 
+    if ($Global:DryRun) {
+        Write-Output "Updating: $Path\$Name, from: $old, to: $Value"
+        return
+    }
+
     if (Test-RegistryValue $Path $Name) {
         Set-ItemProperty -Path $Path -Name $Name -Value $Value
     } else {
@@ -59,6 +64,11 @@ Function Set-RegistryString([String]$Path, [String]$Name, [string]$Value){
     $old = Get-RegistryValue -Path $Path -Name $Name
     if ($old -ne $null -and [string]$old -eq $Value) {
         # Already the correct value...
+        return
+    }
+
+    if ($Global:DryRun) {
+        Write-Output "Updating: $Path\$Name, from: $old, to: $Value"
         return
     }
 
@@ -80,4 +90,15 @@ Function Set-ShortCut([String]$Source, [String]$Arguments, [String]$Destination)
     $Shortcut.TargetPath = $Source
     $Shortcut.Arguments = $Arguments
     $Shortcut.Save()
+}
+
+Function Disable-Service([String]$Name) {
+    if ((Get-Service | Where-Object Name -eq $Name).count -eq 1) {
+        if ($Global:DryRun) {
+            Get-Service -Name $Name
+            return
+        }
+        Stop-Service -Name $Name -Force
+        Set-Service -Name $Name -StartupType Disabled
+    }
 }

@@ -35,14 +35,12 @@ scoop install autohotkey
 scoop install cmder
 scoop install etcher
 scoop install firefox-developer
-scoop install godot
 scoop install gpg4win
 scoop install hain
 #scoop install mobaxterm
 #scoop install now-cli
 scoop install postman
 scoop install putty
-scoop install slack
 scoop install sudo ln touch time
 
 # Make sure SSH works with Git
@@ -63,6 +61,8 @@ choco install -y boostnote
 choco install -y caffeine
 choco install -y dropbox
 choco install -y docker-for-windows
+choco install -y firefox
+choco install -y godot
 choco install -y googlechrome
 choco install -y hyper
 choco install -y intel-xtu
