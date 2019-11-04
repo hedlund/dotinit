@@ -20,9 +20,9 @@ if ! exists docker; then
   installAur dropbox
 fi
 
-# Wavebox
-if ! exists wavebox; then
-  installAur wavebox-bin
+# Google Chrome
+if ! exists google-chrome-stable; then
+  installAur google-chrome
 fi
 
 # envchain
@@ -37,7 +37,7 @@ fi
 
 # Postman
 if ! exists postman; then
-  installAur postman
+  installAur postman-bin
 fi
 
 # Spotify
@@ -59,6 +59,10 @@ fi
 # Google Cloud SDK
 if ! exists gcloud; then
   installAur google-cloud-sdk
+fi
+
+if ! exists slack; then
+  installAur slack-desktop
 fi
 
 # Some things should only be installed on touch devices...

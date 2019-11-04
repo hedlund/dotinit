@@ -25,13 +25,9 @@ sudo systemctl start docker
 sudo systemctl enable docker
 
 # Not installed at the moment:
-#  arduino
-#  chrome
 #  etcher
-#  google-cloud-sdk
 #  java
 #  now
   
-# *alfred
 # *caffeine
-# *dash
+# spectacle

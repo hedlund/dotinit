@@ -18,5 +18,4 @@ brew update && brew upgrade
 #brew install envchain
 
 # Remove outdated versions from the cellar
-brew cleanup 
-
+brew cleanup
