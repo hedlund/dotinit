@@ -3,7 +3,7 @@
 # Update the system
 sudo eopkg ur && sudo eopkg upgrade -y
 
-# it -y the packages
+# Install the packages
 sudo eopkg it -y direnv
 sudo eopkg it -y docker docker-compose
 sudo eopkg it -y dropbox
@@ -20,9 +20,13 @@ sudo eopkg it -y libusb-compat ccid pcsc-tools
 sudo eopkg it -y nodejs
 sudo eopkg it -y tig
 sudo eopkg it -y tree
+sudo eopkg it -y vala-panel-appmenu vala-panel-appmenu-budgie-desktop libdbusmenu
 sudo eopkg it -y vscode
 sudo eopkg it -y whois
 sudo eopkg it -y yarn
+
+#sudo eopkg it -y -c system.devel
+#sudo eopkg it -y cmake vala libgtk-3-devel bamf-devel
 
 # blackbox
 # envchain
