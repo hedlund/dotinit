@@ -53,7 +53,7 @@ Fix-RegistryStartItems -Path "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\Curre
 # Registry: Current User start items
 
 Fix-RegistryStartItems -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Items @{
-  Hain = $(scoop which hain) -replace "~",$HOME
+  #Hain = $(scoop which hain) -replace "~",$HOME
 }
 
 

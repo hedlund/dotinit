@@ -5,3 +5,6 @@ $extensions = Get-Content "$PSScriptRoot\..\common\install-code.sh" | Select-Str
 foreach ($extension in $extensions) {
   code --install-extension $extension
 }
+
+# This is an extension specific to the Windows environment
+code --install-extension ms-vscode-remote.remote-wsl

@@ -3,7 +3,7 @@
 $ScriptDirectory = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
 . ("$ScriptDirectory\functions.ps1")
 
-# In order to install Scoop and Choco, we must set the execution policy to 
+# In order to install Scoop and Choco, we must set the execution policy to
 # allow to run remote scripts
 if ((Get-ExecutionPolicy) -eq "Restricted") {
     Set-ExecutionPolicy RemoteSigned -scope CurrentUser -force
@@ -13,7 +13,7 @@ if ((Get-ExecutionPolicy) -eq "Restricted") {
 # Configuration
 
 $TOOLS_DIR = "C:\tools"
-$WEASEL_PAGEANT_VERSION = "1.1"
+$WEASEL_PAGEANT_VERSION = "1.4"
 
 ###############################################################################
 # Scoop
@@ -27,21 +27,21 @@ scoop install openssh git
 
 # ...then add the buckets
 scoop bucket add extras
-scoop bucket add games
 scoop bucket add nerd-fonts
 
-# Install most tools using Scoop
-scoop install autohotkey
-scoop install cmder
-scoop install etcher
-scoop install firefox-developer
+# Install some additional tools using Scoop
 scoop install gpg4win
-scoop install hain
-#scoop install mobaxterm
-#scoop install now-cli
-scoop install postman
 scoop install putty
 scoop install sudo ln touch time
+scoop install firefox-developer
+
+#scoop install autohotkey
+#scoop install cmder
+#scoop install etcher
+#scoop install hain
+#scoop install mobaxterm
+#scoop install now-cli
+#scoop install postman
 
 # Make sure SSH works with Git
 # Using plink (putty) enables Yubikey to work
@@ -56,16 +56,17 @@ if (!(Get-Command "choco" -errorAction SilentlyContinue)) {
 }
 
 # Install a few applications using Choco
-choco install -y 1password
-choco install -y boostnote
+#TODO: at the time of writing this, 1password has been broken in choco for months...
+#choco install -y 1password
 choco install -y caffeine
 choco install -y dropbox
 choco install -y docker-for-windows
 choco install -y firefox
-choco install -y godot
+#choco install -y godot
 choco install -y googlechrome
-choco install -y hyper
-choco install -y intel-xtu
+#choco install -y gpg4win
+#choco install -y hyper
+#choco install -y intel-xtu
 choco install -y lightshot
 choco install -y quicklook
 choco install -y spotify
@@ -74,16 +75,22 @@ choco install -y spotify
 choco install -y vscode
 choco install -y zeal
 
+# greenshot may be an alternative to lightshot
+# seer may be an alternative to quicklook
+
 # Install fonts
 choco install -y firacode
 
 # Installing Ubuntu via choco can't be done until after restart of computer
-# (as LXSS must be enabled first), and also it installs the subsystem as root 
+# (as LXSS must be enabled first), and also it installs the subsystem as root
 # and requires elevated privileges, so skip this for now...
 #choco install -y wsl wsl-ubuntu-1804
 
 ###############################################################################
 # Weasel-Pageant
+# There is a choco package for weasel nowdays (weasel-pageant.portable), but it
+# it has its own copy of the binaries (on Github), and it installs it to some
+# really obscure location, so let's continue do it manually for now..
 
 # Make sure we have a tools directory
 New-Item -Force -ItemType directory -Path "$TOOLS_DIR"
