@@ -4,11 +4,26 @@
 SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 source "${SCRIPT_DIR}/../common/helpers.sh"
 
+
+# Install nvm
+if ! exists nvm; then
+  echo "Installing nvm..."
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
+  
+  # Update the current shell with the nvm config
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+fi
+
 # Install Node
 if ! exists node; then
   echo "Installing Node.js..."
-  curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
-  sudo apt-get install -y nodejs
+  nvm install node
+
+  #curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+  #sudo apt-get install -y nodejs
 fi
 
 # Install Yarn
