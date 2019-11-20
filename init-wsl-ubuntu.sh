@@ -10,9 +10,8 @@ ${SCRIPT_DIR}/ubuntu/install-docker.sh
 
 # Install NodeJS
 ${SCRIPT_DIR}/ubuntu/install-node.sh
-
-# Install some global Node packages
 ${SCRIPT_DIR}/common/install-node.sh
 
-# Install some Golang tools
+# Install Golang
+${SCRIPT_DIR}/ubuntu/install-golang.sh
 ${SCRIPT_DIR}/common/install-golang.sh
