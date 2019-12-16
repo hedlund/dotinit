@@ -8,6 +8,7 @@ sudo eopkg it -y direnv
 sudo eopkg it -y docker docker-compose
 sudo eopkg it -y dropbox
 sudo eopkg it -y etcher
+sudo eopkg it -y feedreader
 sudo eopkg it -y font-firacode-otf
 sudo eopkg it -y ghostwriter
 sudo eopkg it -y gnome-tweaks
@@ -21,6 +22,7 @@ sudo eopkg it -y nodejs
 sudo eopkg it -y tig
 sudo eopkg it -y tree
 sudo eopkg it -y vala-panel-appmenu vala-panel-appmenu-budgie-desktop libdbusmenu
+sudo eopkg it -y vivaldi-stable ffmpeg-chromium
 sudo eopkg it -y vscode
 sudo eopkg it -y whois
 sudo eopkg it -y yarn
