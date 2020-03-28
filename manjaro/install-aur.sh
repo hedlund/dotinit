@@ -42,7 +42,7 @@ fi
 
 # Spotify
 if ! exists spotify; then
-  gpg --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
+  gpg --keyserver keyserver.ubuntu.com --recv-keys 4773BD5E130D1D45
   installAur spotify
 fi
 
