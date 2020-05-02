@@ -32,25 +32,24 @@ sudo apt-get install -y tree
 sudo apt-get install -y whois
 sudo apt-get install -y xsel
 
+# Some libraries that are needed down the line
+sudo apt-get install -y libreadline-dev
+sudo apt-get install -y libsecret-1-dev
+
 # Install Yarn
 if ! exists yarn; then
   echo "Installing Yarn..."
   curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
   echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-  sudo apt-get update
-  sudo apt-get install -y yarn
+  sudo apt-get update && sudo apt-get install -y yarn
 fi
 
-
-
-#envchain
-#google cloud sdk
-#blackbox
-
-#now
-
-#fzf, pstree, z,
-
+# Install Google Cloud SDK
+if ! exists gcloud; then
+  echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+  curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+  sudo apt-get update && sudo apt-get install -y google-cloud-sdk
+fi
 
 # Cleanup
 sudo apt-get autoremove -y

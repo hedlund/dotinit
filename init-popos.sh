@@ -23,5 +23,8 @@ ${SCRIPT_DIR}/common/install-node.sh
 # Install some Visual Studio Code extension
 ${SCRIPT_DIR}/common/install-code.sh
 
+# Install the remaining things from source
+${SCRIPT_DIR}/common/install-git.sh
+
 # Init the .git repo
 ${SCRIPT_DIR}/common/init-repo.sh

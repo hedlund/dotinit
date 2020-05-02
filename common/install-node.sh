@@ -23,4 +23,5 @@ else
   npm install -g serve
   npm install -g typescript
   npm install -g nodemon
+  npm install -g now
 fi
