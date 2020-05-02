@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
 if [[ "$(uname -s)" != "Darwin" ]]; then
   echo "Not running on Mac OS X. Aborting!"
   exit 1
@@ -28,6 +30,9 @@ ${SCRIPT_DIR}/common/install-node.sh
 
 # Install some Golang tools
 ${SCRIPT_DIR}/common/install-golang.sh
+
+# Init the .git repo
+${SCRIPT_DIR}/common/init-repo.sh
 
 # Output some useful info...
 printf "\nRemember to enable Accessibility access for the following applications:\n"

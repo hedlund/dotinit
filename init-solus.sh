@@ -20,3 +20,6 @@ ${SCRIPT_DIR}/common/install-code.sh
 
 # Install some global Node packages
 ${SCRIPT_DIR}/common/install-node.sh
+
+# Init the .git repo
+${SCRIPT_DIR}/common/init-repo.sh

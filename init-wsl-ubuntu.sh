@@ -15,3 +15,6 @@ ${SCRIPT_DIR}/common/install-node.sh
 # Install Golang
 ${SCRIPT_DIR}/ubuntu/install-golang.sh
 ${SCRIPT_DIR}/common/install-golang.sh
+
+# Init the .git repo
+${SCRIPT_DIR}/common/init-repo.sh

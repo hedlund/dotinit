@@ -32,3 +32,6 @@ ${SCRIPT_DIR}/common/install-node.sh
 
 # Install some Google Cloud SDK components
 sudo ${SCRIPT_DIR}/common/install-gcloud.sh
+
+# Init the .git repo
+${SCRIPT_DIR}/common/init-repo.sh

@@ -19,3 +19,6 @@ ${SCRIPT_DIR}/common/create-folders.sh
 
 # Run setup
 ${SCRIPT_DIR}/ubuntu/setup-ubuntu.sh
+
+# Init the .git repo
+${SCRIPT_DIR}/common/init-repo.sh
