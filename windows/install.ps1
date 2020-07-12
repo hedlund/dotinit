@@ -61,6 +61,7 @@ if (!(Get-Command "choco" -errorAction SilentlyContinue)) {
 choco install -y caffeine
 choco install -y dropbox
 choco install -y docker-for-windows
+choco install -y etcher
 choco install -y firefox
 #choco install -y godot
 choco install -y googlechrome
@@ -72,11 +73,15 @@ choco install -y quicklook
 choco install -y spotify
 #choco install -y tunsafe
 #choco install -y vivaldi
+choco install -y vagrant
 choco install -y vscode
 choco install -y zeal
 
 # greenshot may be an alternative to lightshot
 # seer may be an alternative to quicklook
+
+# Install the Vagrant SCP plugin
+vagrant plugin install vagrant-scp
 
 # Install fonts
 choco install -y firacode
