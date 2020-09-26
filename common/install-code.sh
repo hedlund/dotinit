@@ -28,10 +28,15 @@ $code --install-extension deerawan.vscode-dash
 $code --install-extension mauve.terraform
 $code --install-extension ms-vscode.Go
 $code --install-extension ms-vscode.PowerShell
+$code --install-extension castwide.solargraph
+$code --install-extension wingrunr21.vscode-ruby
+$code --install-extension zxh404.vscode-proto3
+@code --install-extension ms-azuretools.vscode-docker
 # $code --install-extension DotJoshJohnson.xml
 # $code --install-extension geequlim.godot-tools
-# $code --install-extension PeterJausovec.vscode-docker
 
 # Themes
 $code --install-extension Equinusocio.vsc-material-theme
 $code --install-extension PKief.material-icon-theme
+$code --install-extension cometeer.spacemacs
+

@@ -25,3 +25,6 @@ dconf write /org/gnome/shell/extensions/pop-shell/search "['<Super>space']"
 dconf write /org/gnome/desktop/interface/clock-format "'24h'"
 dconf write /org/gtk/settings/file-chooser/clock-format "'24h'"
 #dconf write /system/locale/region "'en_DK.UTF-8'"
+
+# Add week numbers to calendar
+dconf write /org/gnome/desktop/calendar/show-weekdate true
