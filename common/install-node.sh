@@ -12,4 +12,5 @@ else
   npm install -g typescript
   npm install -g yo
   npm install -g nodemon
+  npm install -g node-gyp node-gyp-build
 fi

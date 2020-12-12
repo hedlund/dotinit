@@ -126,13 +126,13 @@ if (![System.IO.File]::Exists($GPG_CONFIG_FILE) -Or (Get-Content $GPG_CONFIG_FIL
 # (which is insecure, but unfortunately needed to use with LXSS).
 $DOCKER_CONFIG_FILE = "$HOME\AppData\Roaming\Docker\settings.json"
 if (![System.IO.File]::Exists($DOCKER_CONFIG_FILE) -Or (Get-Content $DOCKER_CONFIG_FILE) -eq $null) {
-    @{StartAtLogin=$false;IsTracking=$false;ExposeTcp=$true} | ConvertTo-Json | Out-File $DOCKER_CONFIG_FILE
+    @{StartAtLogin=$false;IsTracking=$false;ExposeTcp=$false} | ConvertTo-Json | Out-File $DOCKER_CONFIG_FILE
 }
 else {
     (Get-Content $DOCKER_CONFIG_FILE) `
         -replace '"StartAtLogin":.+$', '"StartAtLogin": false,' `
         -replace '"IsTracking":.+$', '"IsTracking": false,' `
-        -replace '"ExposeTcp":.+$', '"ExposeTcp": true,' |
+        -replace '"ExposeTcp":.+$', '"ExposeTcp": false,' |
       Out-File $DOCKER_CONFIG_FILE
 }
 

@@ -25,6 +25,10 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-L
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All  -NoRestart
 Enable-WindowsOptionalFeature -Online -FeatureName containers -All -NoRestart
 
+Enable-WindowsOptionalFeature -Online -FeatureName $("VirtualMachinePlatform", "Microsoft-Windows-Subsystem-Linux")
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+wsl --set-default-version 2
+
 # Rename the PC
 $name = Read-Host -Prompt "Enter new name to rename the computer (ENTER to skip)"
 if ($name.Trim()) {
