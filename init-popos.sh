@@ -8,6 +8,9 @@ ${SCRIPT_DIR}/ubuntu/install-apt.sh
 # Install stuff from the Pop OS repos
 ${SCRIPT_DIR}/popos/install-apt.sh
 
+# Install some snaps
+${SCRIPT_DIR}/popos/install-snap.sh
+
 # Install some flatpaks
 ${SCRIPT_DIR}/popos/install-flat.sh
 
