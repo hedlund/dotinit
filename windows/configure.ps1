@@ -117,3 +117,13 @@ Set-RegistryString -Path "HKCU:\Control Panel\Desktop" -Name "SCRNSAVE.EXE" -Val
 
 # Set a 5 second grace period
 Set-RegistryDWord -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name "ScreenSaverGracePeriod" -Value 5
+
+###############################################################################
+# Keyboard
+
+Write-Output "Configuring keyboard..."
+
+# Disable the keyboard layout switching shortcut
+Set-RegistryString -Path "HKCU:\Keyboard Layout\Toggle" -Name "Language Hotkey" -Value "3"
+Set-RegistryString -Path "HKCU:\Keyboard Layout\Toggle" -Name "Hotkey" -Value "3"
+Set-RegistryString -Path "HKCU:\Keyboard Layout\Toggle" -Name "Layout Hotkey" -Value "3"

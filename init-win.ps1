@@ -20,10 +20,15 @@ $DotInitDirectory = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
 # Include cleanup.ps1 to cleanup some things
 . ("$DotInitDirectory\windows\cleanup.ps1")
 
-# Enable LXSS, Hyper-V & containers
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux  -NoRestart
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All  -NoRestart
+# Enable WSL, Hyper-V & containers
+Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform -NoRestart
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart
+# TODO: Do we still need these two?
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All -NoRestart
 Enable-WindowsOptionalFeature -Online -FeatureName containers -All -NoRestart
+
+# Make sure we use WSL2 by default
+wsl --set-default-version 2
 
 # Rename the PC
 $name = Read-Host -Prompt "Enter new name to rename the computer (ENTER to skip)"

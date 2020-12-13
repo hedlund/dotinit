@@ -19,7 +19,7 @@ $WEASEL_PAGEANT_VERSION = "1.4"
 # Scoop
 
 if (!(Get-Command "scoop" -errorAction SilentlyContinue)) {
-   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://get.scoop.sh')
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://get.scoop.sh')
 }
 
 # We need to install git before adding buckets to Scoop...
@@ -33,11 +33,9 @@ scoop bucket add nerd-fonts
 scoop install gpg4win
 scoop install putty
 scoop install sudo ln touch time
-scoop install firefox-developer
 
 #scoop install autohotkey
 #scoop install cmder
-#scoop install etcher
 #scoop install hain
 #scoop install mobaxterm
 #scoop install now-cli
@@ -58,24 +56,22 @@ if (!(Get-Command "choco" -errorAction SilentlyContinue)) {
 # Install a few applications using Choco
 #TODO: at the time of writing this, 1password has been broken in choco for months...
 #choco install -y 1password
+choco install -y AndroidStudio
 choco install -y caffeine
-choco install -y dropbox
-choco install -y docker-for-windows
+choco install -y docker-desktop
 choco install -y etcher
 choco install -y firefox
-#choco install -y godot
-choco install -y googlechrome
-#choco install -y gpg4win
-#choco install -y hyper
+choco install -y godot
+choco install -y GoogleChrome
+choco install -y microsoft-windows-terminal
 #choco install -y intel-xtu
 choco install -y lightshot
+choco install -y powertoys
 choco install -y quicklook
 choco install -y spotify
 #choco install -y tunsafe
-#choco install -y vivaldi
-choco install -y vagrant
+choco install -y vivaldi
 choco install -y vscode
-choco install -y zeal
 
 # greenshot may be an alternative to lightshot
 # seer may be an alternative to quicklook
@@ -84,7 +80,7 @@ choco install -y zeal
 vagrant plugin install vagrant-scp
 
 # Install fonts
-choco install -y firacode
+choco install -y FiraCode
 
 # Installing Ubuntu via choco can't be done until after restart of computer
 # (as LXSS must be enabled first), and also it installs the subsystem as root
@@ -109,7 +105,7 @@ if (![System.IO.File]::Exists("$TOOLS_DIR\weasel-pageant\weasel-pageant")) {
     (new-object net.webclient).DownloadFile("https://github.com/vuori/weasel-pageant/releases/download/v$WEASEL_PAGEANT_VERSION/weasel-pageant-$WEASEL_PAGEANT_VERSION.zip", $weasel_file)
 
     # ...and unzip it and move it into place
-    $shell_app=new-object -com shell.application
+    $shell_app = new-object -com shell.application
     $shell_app.namespace($TOOLS_DIR).CopyHere($shell_app.namespace($weasel_file).items())
     Rename-Item -Path "$TOOLS_DIR\weasel-pageant-$WEASEL_PAGEANT_VERSION" -NewName "weasel-pageant" -ErrorAction Stop
 
@@ -123,22 +119,20 @@ if (![System.IO.File]::Exists("$TOOLS_DIR\weasel-pageant\weasel-pageant")) {
 # Configure GPG
 $GPG_CONFIG_FILE = "$HOME\AppData\Roaming\gnupg\gpg-agent.conf"
 gpg --import "$ScriptDirectory\..\common\pubkey.txt"
-if (![System.IO.File]::Exists($GPG_CONFIG_FILE) -Or (Get-Content $GPG_CONFIG_FILE | %{$_ -match "enable-putty-support"}) -contains $false) {
+if (![System.IO.File]::Exists($GPG_CONFIG_FILE) -Or (Get-Content $GPG_CONFIG_FILE | % { $_ -match "enable-putty-support" }) -contains $false) {
     Add-Content $GPG_CONFIG_FILE "enable-putty-support"
 }
 
-# Configure Docker to not automatically start, not track, and expose TCP
-# (which is insecure, but unfortunately needed to use with LXSS).
+# Configure Docker to not automatically start, not track, NOT expose TCP, and use WSL2 by default.
 $DOCKER_CONFIG_FILE = "$HOME\AppData\Roaming\Docker\settings.json"
 if (![System.IO.File]::Exists($DOCKER_CONFIG_FILE) -Or (Get-Content $DOCKER_CONFIG_FILE) -eq $null) {
-    @{StartAtLogin=$false;IsTracking=$false;ExposeTcp=$true} | ConvertTo-Json | Out-File $DOCKER_CONFIG_FILE
+    @{autoStart = $false; analyticsEnabled = $false } | ConvertTo-Json | Out-File $DOCKER_CONFIG_FILE
 }
 else {
     (Get-Content $DOCKER_CONFIG_FILE) `
-        -replace '"StartAtLogin":.+$', '"StartAtLogin": false,' `
-        -replace '"IsTracking":.+$', '"IsTracking": false,' `
-        -replace '"ExposeTcp":.+$', '"ExposeTcp": true,' |
-      Out-File $DOCKER_CONFIG_FILE
+        -replace '"autoStart":.+$', '"autoStart": false,' `
+        -replace '"analyticsEnabled":.+$', '"analyticsEnabled": false,' |
+    Out-File $DOCKER_CONFIG_FILE
 }
 
 # Make sure that Git isn't messing with the line endings
