@@ -61,6 +61,7 @@ choco install -y caffeine
 choco install -y docker-desktop
 choco install -y etcher
 choco install -y firefox
+choco install -y gh
 choco install -y godot
 choco install -y GoogleChrome
 choco install -y microsoft-windows-terminal

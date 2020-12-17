@@ -2,9 +2,7 @@
 
 open -a "1Password 7"
 open -a Arduino
-open -a Dash
 open -a Docker
-open -a Dropbox
 open -a "iStat Menus"
 open -a "Micro Snitch"
 

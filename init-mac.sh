@@ -37,10 +37,8 @@ ${SCRIPT_DIR}/common/init-repo.sh
 # Output some useful info...
 printf "\nRemember to enable Accessibility access for the following applications:\n"
 printf "    Alfred 3\n"
-printf "    Dropbox\n"
 printf "    Spectacle\n"
 printf "Go to System Preferences > Security & Privacy > Privacy > Accessibility\n\n"
 
 printf "Login to 1Password to get the passwords syncing.\n"
-printf "Login to Dropbox and let it finish the first sync.\n"
 printf "Then install Little Snitch and let it restart the computer...\n\n"

@@ -3,18 +3,16 @@
 SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 # Install basic stuff
-${SCRIPT_DIR}/ubuntu/install-apt.sh
+${SCRIPT_DIR}/ubuntu/install-apt.sh --no-docker
 
-# Install Docker
-${SCRIPT_DIR}/ubuntu/install-docker.sh
-
-# Install NodeJS
-${SCRIPT_DIR}/ubuntu/install-node.sh
+# Install NodeJS stuff
 ${SCRIPT_DIR}/common/install-node.sh
 
-# Install Golang
-${SCRIPT_DIR}/ubuntu/install-golang.sh
+# Install Golang stuff
 ${SCRIPT_DIR}/common/install-golang.sh
+
+# Make sure we have some common folders
+${SCRIPT_DIR}/common/create-folders.sh
 
 # Init the .git repo
 ${SCRIPT_DIR}/common/init-repo.sh

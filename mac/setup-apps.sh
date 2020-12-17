@@ -1,15 +1,6 @@
 #!/bin/bash -e
 
 ###############################################################################
-# Alfred                                                                      #
-###############################################################################
-
-# Set the config sync folder
-defaults write com.runningwithcrayons.Alfred-Preferences-3 syncfolder -string "~/Dropbox/Library/Alfred"
-
-#TODO: Configuring colour scheme and key binding
-
-###############################################################################
 # Google Chrome                                                               #
 ###############################################################################
 
@@ -90,11 +81,3 @@ defaults write "at.obdev.MicroSnitch" OpenAtLogin -int 1
 if [ -f ${HOME}/Library/Arduino15/preferences.txt ]; then
     sed -i "s|sketchbook.path=.*|sketchbook.path=${HOME}/Projects/arduino|g" ${HOME}/Library/Arduino15/preferences.txt
 fi
-
-
-###############################################################################
-# Dash                                                                        #
-###############################################################################
-
-defaults write com.kapeli.dashdoc syncFolderPath -string "${HOME}/Dropbox/Library/Dash"
-defaults write com.kapeli.dashdoc snippetSQLPath -string "${HOME}/Dropbox/Library/Dash/Snippets.dash"

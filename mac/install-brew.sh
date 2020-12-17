@@ -34,15 +34,16 @@ brew install dep
 brew install direnv
 brew install envchain
 brew install fzf
+brew install gh
 brew install go
 brew install gpg pinentry-mac
 brew install httpie
-brew install hub
 brew install node
 brew install pstree
 brew install rsync
 brew install scons
 brew install telnet
+brew install tfenv
 brew install tig
 brew install tree
 brew install yarn
@@ -57,9 +58,7 @@ brew cask install arduino
 brew cask install boostnote
 brew cask install caffeine
 brew cask install daisydisk
-brew cask install dash
 brew cask install docker
-brew cask install dropbox
 brew cask install etcher
 brew cask install firefox-developer-edition
 brew cask install google-chrome

@@ -44,7 +44,6 @@ Function Fix-RegistryStartItems([String]$Path, [Hashtable]$Items) {
 # Registry: Local Machine start items
 
 Fix-RegistryStartItems -Path "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Run" -Items @{
-  Dropbox = "`"C:\Program Files (x86)\Dropbox\Client\Dropbox.exe`" /systemstartup";
   Lightshot = "C:\Program Files (x86)\Skillbrains\lightshot\Lightshot.exe"
 }
 

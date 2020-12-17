@@ -19,9 +19,7 @@ fi
 if ! exists npm; then
   echo "NPM not available. Skipping!"
 else
-  npm install -g depcheck
-  npm install -g serve
-  npm install -g typescript
   npm install -g nodemon
   npm install -g now
+  npm install -g serve
 fi

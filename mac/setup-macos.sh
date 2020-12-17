@@ -487,5 +487,4 @@ done
 # ...and add those I want
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Alfred 3.app", name:"Alfred 3", hidden:false}'
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Caffeine.app", name:"Caffeine", hidden:false}'
-osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Dropbox.app", name:"Dropbox", hidden:false}'
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Spectacle.app", name:"Spectacle", hidden:false}'

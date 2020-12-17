@@ -20,10 +20,8 @@ sudo apt-get install -y software-properties-common
 # Then install a bunch of stuff
 sudo apt-get install -y ack
 sudo apt-get install -y default-jdk
-sudo apt-get install -y docker.io docker-compose
 sudo apt-get install -y direnv
 sudo apt-get install -y golang
-sudo apt-get install -y hub
 sudo apt-get install -y httpie
 sudo apt-get install -y nodejs npm
 sudo apt-get install -y protobuf-compiler
@@ -34,6 +32,11 @@ sudo apt-get install -y tig
 sudo apt-get install -y tree
 sudo apt-get install -y whois
 sudo apt-get install -y xsel
+
+# Docker is not needed in all environments
+if [ "$1" != "--no-docker" ]; then
+  sudo apt-get install -y docker.io docker-compose
+fi
 
 # Some libraries that are needed down the line
 sudo apt-get install -y libreadline-dev
@@ -50,8 +53,15 @@ fi
 # Install Google Cloud SDK
 if ! exists gcloud; then
   echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-  curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+  curl -sS https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
   sudo apt-get update && sudo apt-get install -y google-cloud-sdk
+fi
+
+# Install Github CLI
+if ! exists gh; then
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+  sudo apt-add-repository https://cli.github.com/packages
+  sudo apt update && sudo apt install -y gh
 fi
 
 # Cleanup

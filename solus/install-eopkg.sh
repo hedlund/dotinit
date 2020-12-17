@@ -6,7 +6,6 @@ sudo eopkg ur && sudo eopkg upgrade -y
 # Install the packages
 sudo eopkg it -y direnv
 sudo eopkg it -y docker docker-compose
-sudo eopkg it -y dropbox
 sudo eopkg it -y etcher
 sudo eopkg it -y feedreader
 sudo eopkg it -y font-firacode-otf
