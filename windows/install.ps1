@@ -33,6 +33,7 @@ scoop bucket add nerd-fonts
 scoop install gpg4win
 scoop install putty
 scoop install sudo ln touch time
+scoop install task
 
 #scoop install autohotkey
 #scoop install cmder

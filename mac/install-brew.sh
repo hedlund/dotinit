@@ -42,6 +42,7 @@ brew install node
 brew install pstree
 brew install rsync
 brew install scons
+brew install go-task/tap/go-task
 brew install telnet
 brew install tfenv
 brew install tig

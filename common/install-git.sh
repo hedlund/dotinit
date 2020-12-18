@@ -15,3 +15,12 @@ if ! exists envchain; then
   (cd /tmp/envchain && make && sudo make install)
   rm -rf /tmp/envchain
 fi
+
+if ! exists tfenv; then
+  TFENV_DIR="${HOME}/.tfenv"
+  if [ ! -d "${TFENV_DIR}" ]; then
+    git clone https://github.com/tfutils/tfenv.git "${TFENV_DIR}"
+  fi
+  sudo ln -s ${TFENV_DIR}/bin/* /usr/local/bin
+  tfenv install latest
+fi

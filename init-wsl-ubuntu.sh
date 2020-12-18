@@ -14,5 +14,8 @@ ${SCRIPT_DIR}/common/install-golang.sh
 # Make sure we have some common folders
 ${SCRIPT_DIR}/common/create-folders.sh
 
+# Install the remaining things from source
+${SCRIPT_DIR}/common/install-git.sh
+
 # Init the .git repo
 ${SCRIPT_DIR}/common/init-repo.sh
