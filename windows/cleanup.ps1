@@ -72,5 +72,5 @@ Set-RegistryDWord -Path "HKCR:\Wow6432Node\CLSID\{018D5C66-4533-4307-9B53-224DE2
 Remove-PSDrive "HKCR"
 
 # Restart Explorer and give it time to start
-start "explorer.exe"
-sleep 15
+Start-Process "explorer.exe"
+Start-Sleep 15

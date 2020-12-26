@@ -10,12 +10,6 @@ if ((Get-ExecutionPolicy) -eq "Restricted") {
 }
 
 ###############################################################################
-# Configuration
-
-$TOOLS_DIR = "C:\tools"
-$WEASEL_PAGEANT_VERSION = "1.4"
-
-###############################################################################
 # Scoop
 
 if (!(Get-Command "scoop" -errorAction SilentlyContinue)) {
@@ -56,7 +50,7 @@ if (!(Get-Command "choco" -errorAction SilentlyContinue)) {
 
 # Install a few applications using Choco
 #TODO: at the time of writing this, 1password has been broken in choco for months...
-#choco install -y 1password
+choco install -y 1password
 choco install -y AndroidStudio
 choco install -y caffeine
 choco install -y docker-desktop
@@ -64,6 +58,7 @@ choco install -y etcher
 choco install -y firefox
 choco install -y gh
 choco install -y godot
+choco install -y golang
 choco install -y GoogleChrome
 choco install -y microsoft-windows-terminal
 #choco install -y intel-xtu
@@ -72,6 +67,7 @@ choco install -y powertoys
 choco install -y quicklook
 choco install -y spotify
 #choco install -y tunsafe
+choco install -y vagrant
 choco install -y vivaldi
 choco install -y vscode
 #choco install -y wincrypt-sshagent
@@ -89,32 +85,6 @@ choco install -y FiraCode
 # (as LXSS must be enabled first), and also it installs the subsystem as root
 # and requires elevated privileges, so skip this for now...
 #choco install -y wsl wsl-ubuntu-1804
-
-###############################################################################
-# Weasel-Pageant
-# There is a choco package for weasel nowdays (weasel-pageant.portable), but it
-# it has its own copy of the binaries (on Github), and it installs it to some
-# really obscure location, so let's continue do it manually for now..
-
-# Make sure we have a tools directory
-New-Item -Force -ItemType directory -Path "$TOOLS_DIR"
-
-# Check if we need to install weasel-pageant
-if (![System.IO.File]::Exists("$TOOLS_DIR\weasel-pageant\weasel-pageant")) {
-
-    # Download the release ZIP file...
-    $weasel_file = "$TOOLS_DIR\weasel-pageant.zip"
-    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-    (new-object net.webclient).DownloadFile("https://github.com/vuori/weasel-pageant/releases/download/v$WEASEL_PAGEANT_VERSION/weasel-pageant-$WEASEL_PAGEANT_VERSION.zip", $weasel_file)
-
-    # ...and unzip it and move it into place
-    $shell_app = new-object -com shell.application
-    $shell_app.namespace($TOOLS_DIR).CopyHere($shell_app.namespace($weasel_file).items())
-    Rename-Item -Path "$TOOLS_DIR\weasel-pageant-$WEASEL_PAGEANT_VERSION" -NewName "weasel-pageant" -ErrorAction Stop
-
-    # Cleanup
-    Remove-Item -Path "$weasel_file"
-}
 
 ###############################################################################
 # Application configuration

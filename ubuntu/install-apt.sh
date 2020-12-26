@@ -28,6 +28,7 @@ sudo apt-get install -y protobuf-compiler
 sudo apt-get install -y ruby ruby-dev
 sudo apt-get install -y shellcheck
 sudo apt-get install -y snapd
+sudo apt-get install -y socat
 sudo apt-get install -y tig
 sudo apt-get install -y tree
 sudo apt-get install -y whois
