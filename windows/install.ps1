@@ -74,6 +74,7 @@ choco install -y spotify
 #choco install -y tunsafe
 choco install -y vivaldi
 choco install -y vscode
+#choco install -y wincrypt-sshagent
 
 # greenshot may be an alternative to lightshot
 # seer may be an alternative to quicklook
