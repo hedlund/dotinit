@@ -127,3 +127,13 @@ Write-Output "Configuring keyboard..."
 Set-RegistryString -Path "HKCU:\Keyboard Layout\Toggle" -Name "Language Hotkey" -Value "3"
 Set-RegistryString -Path "HKCU:\Keyboard Layout\Toggle" -Name "Hotkey" -Value "3"
 Set-RegistryString -Path "HKCU:\Keyboard Layout\Toggle" -Name "Layout Hotkey" -Value "3"
+
+
+###############################################################################
+# Window title bars should be black
+
+Write-Output "Configuring Window Title Bars..."
+
+Set-RegistryDWord -Path "HKCU:\SOFTWARE\Microsoft\Windows\DWM" -Name "ColorPrevalence" -Value 1
+Set-RegistryDWord -Path "HKCU:\SOFTWARE\Microsoft\Windows\DWM" -Name "AccentColor" -Value 0xff000000
+Set-RegistryDWord -Path "HKCU:\SOFTWARE\Microsoft\Windows\DWM" -Name "AccentColorInactive" -Value 0xff666666
