@@ -23,8 +23,10 @@ sudo apt-get install -y default-jdk
 sudo apt-get install -y direnv
 sudo apt-get install -y golang
 sudo apt-get install -y httpie
+sudo apt-get install -y kpartx
 sudo apt-get install -y nodejs npm
 sudo apt-get install -y protobuf-compiler
+sudo apt-get install -y qemu-user-static
 sudo apt-get install -y ruby ruby-dev
 sudo apt-get install -y shellcheck
 sudo apt-get install -y snapd
@@ -62,7 +64,14 @@ fi
 if ! exists gh; then
   sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
   sudo apt-add-repository https://cli.github.com/packages
-  sudo apt update && sudo apt install -y gh
+  sudo apt-get update && sudo apt install -y gh
+fi
+
+# Install Packer
+if ! exists packer; then
+  curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+  sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+  sudo apt-get update && sudo apt-get install -y packer
 fi
 
 # Cleanup
